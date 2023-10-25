@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_25_230152) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_25_231917) do
+  create_table "episodes", force: :cascade do |t|
+    t.string "title"
+    t.integer "season_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["season_id"], name: "index_episodes_on_season_id"
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.integer "number"
     t.integer "show_id", null: false
@@ -25,5 +33,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_25_230152) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "episodes", "seasons"
   add_foreign_key "seasons", "shows"
 end
