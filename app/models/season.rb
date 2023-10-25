@@ -1,3 +1,3 @@
 class Season < ApplicationRecord
-  belongs_to :show, optional true
+  belongs_to :show, optional: true
 end
