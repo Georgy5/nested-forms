@@ -13,6 +13,7 @@ class ShowsController < ApplicationController
   # GET /shows/new
   def new
     @show = Show.new
+    @show.seasons.build
   end
 
   # GET /shows/1/edit
@@ -65,6 +66,8 @@ class ShowsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def show_params
-      params.require(:show).permit(:name)
+      params.require(:show).permit(:name,
+        :seasons_attributes => [:number]
+      )
     end
 end
